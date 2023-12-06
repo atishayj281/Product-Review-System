@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-...Your-Integrity-Code-Here..." crossorigin="anonymous" />
+
+<div class="containr">
+
+    <div class="profile">
+        <a href="/profile"><img src="../../assets/images/user-3-fill.svg" alt="" class="logo"></a>
+    </div>
+
+    <div class="bg d-flex justify-content-center align-items-center">
+        <div class="content-overley">
+            <h1>Welcome to Our Community</h1>
+            <p>Find Products . Post Reviews . Share Ideas</p>
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-12 text-center">
+                        <h4>Welcome {{username}} <span><button class="btn btn-dark logout-button" (click)="logout()">Logout</button></span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="search">
+    <div class="main">
+        <div class="form-group has-search">
+            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="name">
+        </div>
+        <div class="form-group has-search">
+            <input type="text" class="form-control" placeholder="Brand" [(ngModel)]="brand">
+        </div>
+        <div class="form-group has-search">
+            <input type="text" class="form-control" placeholder="Code" [(ngModel)]="code">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-outline-success"(click)="search()">Search</button>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="row">
+        <div class="col-md-3 col-sm-6" *ngFor="let item of product">
+
+            <div class="product-grid">
+                <div class="product-image">
+                    <a [routerLink]="['/details']"  
+                    [queryParams]="{id: item.productInfo.id}"
+                     class="image" *ngIf="item.images.length != 0;">
+                        <img class="pic-1"
+                            src={{item.images[0].url}}>
+                            <img class="pic-2"
+                            src={{item.images[0].url}}>
+                    </a>
+                </div>
+                <div class="product-content">
+                    <a class="add-to-cart" [routerLink]="['/details']"  
+                    [queryParams]="{id: item.productInfo.id}" >
+                        More Details
+                    </a>
+                    <h3 class="title"><a [routerLink]="['/details']"  
+                        [queryParams]="{id: item.productInfo.id}">{{item.productInfo.name}}</a></h3>
+                    <!-- <ul class="rating">
+                        <li class="fas fa-star"></li>
+                        <li class="fas fa-star"></li>
+                        <li class="fas fa-star"></li>
+                        <li class="far fa-star"></li>
+                        <li class="far fa-star"></li>
+                    </ul> -->
+                    <div class="price">₹{{item.productInfo.price}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

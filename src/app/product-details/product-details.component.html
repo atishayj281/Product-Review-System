@@ -1,0 +1,60 @@
+<body oncontextmenu='return false' class='snippet-body'>
+    <div class="super_container">
+        <div class="single_product">
+            <div class="container-fluid" style=" background-color: #fff; padding: 11px;">
+                <div class="row">
+                    <div id="carouselExampleControls" class="col-lg-4 carousel slide" height="100vh" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" height="500vh" src={{product?.images?.at(0)?.url}} alt="First slide">
+                          </div>
+                        </div>
+                      </div>
+                    <div class="col-lg-8 order-3">
+                        <div class="product_description">
+                            <div class="product_name">{{product?.productInfo?.name}}</div>
+                            <div class="product_brand">Brand: <span>{{product?.productInfo?.brand}}</span></div>
+                            <div class="product_code">Code: <span>{{product?.productInfo?.code}}</span></div>
+                            <div class="product-rating" *ngIf="avgRatings != '';"><span>{{avgRatings}}
+                                    Star </span> <br> <span class="rating-review">35 Ratings & 45 Reviews</span></div>
+                            <div> <span class="product_price">₹ {{product?.productInfo?.price}}</span>
+                            <div>
+                            </div>
+                            <hr class="singleline">
+                            <button class="btn btn-outline-dark" (click)="askForReview()">Ask for Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="py-5">
+        <div class="container">
+            <!-- FOR DEMO PURPOSE -->
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <header class="text-center pb-5">
+                        <h1 class="h2">Previous Reviews</h1>
+                    </header>
+                </div>
+            </div><!-- END -->
+    
+    
+            <div class="row" *ngFor="let item of review">
+                <div class="col-lg-6 mx-auto">
+    
+                    <!-- CUSTOM BLOCKQUOTE -->
+                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                        <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+                        <h3>{{item.heading}}</h3>
+                        <h6>Ratings: {{item.ratings}}</h6>
+                        <p class="mb-0 mt-2 font-italic">{{item.message}}</p>
+                    </blockquote><!-- END -->
+    
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
